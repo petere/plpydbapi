@@ -34,6 +34,8 @@ setup(
         'Environment :: Plugins',
         'License :: OSI Approved :: The PostgreSQL License',
         'Programming Language :: Python',
+        'Programming Language :: Python :: 2',
+        'Programming Language :: Python :: 3',
         'Topic :: Database',
         'Topic :: Software Development :: Libraries :: Python Modules',
         ],
