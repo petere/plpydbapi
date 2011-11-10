@@ -32,7 +32,7 @@ setup(
     classifiers=[
         'Development Status :: 3 - Alpha',
         'Environment :: Plugins',
-        'License :: OSI Approved :: The PostgreSQL License',
+        'License :: OSI Approved :: MIT License',
         'Programming Language :: Python',
         'Programming Language :: Python :: 2',
         'Programming Language :: Python :: 3',
