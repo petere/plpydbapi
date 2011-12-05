@@ -13,6 +13,7 @@ class test(_test):
         import subprocess
         import sys
         sys.exit(subprocess.call(['psql',
+                                  '-X',
                                   '-d', 'postgres',
                                   '-v', 'langname=plpython{0}u'.format(sys.version[0])],
                                  stdin=open('test/run_test_plpydbapi_dbapi20.sql')))
