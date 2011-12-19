@@ -33,6 +33,7 @@ Here is an example how to use it:
     cursor.execute("SELECT ... FROM ...")
     for row in cursor.fetchall():
         plpy.notice("got row %s" % row)
+    dbconn.close()
 
 Test suite
 ----------
