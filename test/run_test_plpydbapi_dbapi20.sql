@@ -24,7 +24,7 @@ CREATE OR REPLACE LANGUAGE :langname;
 
 -- adjust sys.path
 \set pwd `pwd`
-\set cmd 'import sys\nsys.path.insert(0, \'' :pwd '\')'
+\set cmd 'import sys; sys.path.insert(0, \'' :pwd '\'); sys.path.append(\'' :pwd '/dbapi-compliance\')'
 DO LANGUAGE :langname :'cmd';
 
 -- run unittest

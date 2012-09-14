@@ -1,0 +1,2 @@
+[dbapi-compliance]
+checkout = bzr branch lp:dbapi-compliance dbapi-compliance

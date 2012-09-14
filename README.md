@@ -41,14 +41,12 @@ Test suite
 There is a test suite in the test/ subdirectory.  It uses the DB-API
 compliance test framework from
 <https://launchpad.net/dbapi-compliance>.  So first fetch, er, clone,
-er, branch yourself a copy of that:
+er, branch yourself a copy of that
 
     bzr branch lp:dbapi-compliance
 
-Copy the file dbapi20.py somewhere into the Python module path.
-Either install it into one of Python's own directories, or you can
-just copy it into the top level directory of this distribution, next
-to plpydbapi.py.
+into the current directory.  If you have
+[mr](http://kitenet.net/~joey/code/mr/), just run `mr up`.
 
 If you are using Python 2.6, you also need the unittest2 package; with
 Python 2.7 and later, the unittest module in the standard library is
