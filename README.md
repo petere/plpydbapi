@@ -38,6 +38,8 @@ Here is an example how to use it:
 Test suite
 ----------
 
+[![Build Status](https://secure.travis-ci.org/petere/plpydbapi.png)](http://travis-ci.org/petere/plpydbapi)
+
 There is a test suite in the test/ subdirectory.  It uses the DB-API
 compliance test framework from
 <https://launchpad.net/dbapi-compliance>.  So first fetch, er, clone,
