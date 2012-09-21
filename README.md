@@ -12,7 +12,8 @@ Installation
 ------------
 
 plpydbapi supports Python 2.6 and later, including Python 3.x, and
-requires PostgreSQL 9.1 or later.
+requires PostgreSQL 9.1 or later.  Using `cursor.description` requires
+PostgreSQL 9.2.
 
 Just install it like any setuptools-enabled Python module, for example
 

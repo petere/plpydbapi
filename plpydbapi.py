@@ -179,11 +179,15 @@ class Cursor:
         if res.status() == self._SPI_OK_SELECT:
             self._execute_result = [[row[col] for col in row] for row in res]
             self.rownumber = 0
-            if len(res) > 0:
-                self.description = [(name, None, None, None, None, None, None) for name in res[0].keys()]  # FIXME: type
+            if 'colnames' in res.__class__.__dict__:
+                # PG 9.2+: use .colnames() and .coltypes() methods
+                self.description = [(name, get_type_obj(typeoid), None, None, None, None, None) for name, typeoid in zip(res.colnames(), res.coltypes())]
+            elif len(res) > 0:
+                # else get at least the column names from the row keys
+                self.description = [(name, None, None, None, None, None, None) for name in res[0].keys()]
             else:
-                # We're screwed XXX
-                self.description = [("name", STRING, None, None, None, None, None)]
+                # else we know nothing
+                self.description = [(None, None, None, None, None, None, None)]
 
         if res.status() == self._SPI_OK_UTILITY:
             self.rowcount = -1
@@ -312,3 +316,33 @@ class DATETIME:
 
 class ROWID:
     pass
+
+
+_typname_typeobjs = {
+    'bytea': BINARY,
+}
+
+
+_typcategory_typeobjs = {
+    'D': DATETIME,
+    'N': NUMBER,
+    'S': STRING,
+    'T': DATETIME,
+}
+
+
+_typoid_typeobjs = {}
+
+
+def get_type_obj(typeoid):
+    """Return the type object (STRING, NUMBER, etc.) that corresponds
+    to the given type OID."""
+    global _typoid_typeobjs
+    if not _typoid_typeobjs:
+        for row in plpy.execute(plpy.prepare("SELECT oid, typname, typcategory FROM pg_type")):
+            if row['typcategory'] in _typcategory_typeobjs:
+                _typoid_typeobjs[int(row['oid'])] = _typcategory_typeobjs[row['typcategory']]
+            elif row['typname'] in _typname_typeobjs:
+                _typoid_typeobjs[int(row['oid'])] = _typname_typeobjs[row['typname']]
+
+    return _typoid_typeobjs.get(typeoid)
