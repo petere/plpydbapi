@@ -31,7 +31,7 @@ setup(
     author_email='peter@eisentraut.org',
     url='https://github.com/petere/plpydbapi',
     classifiers=[
-        'Development Status :: 3 - Alpha',
+        'Development Status :: 4 - Beta',
         'Environment :: Plugins',
         'License :: OSI Approved :: MIT License',
         'Programming Language :: Python',
