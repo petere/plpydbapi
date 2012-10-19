@@ -21,7 +21,7 @@ class test(_test):
 
 setup(
     name='plpydbapi',
-    version='0.1.0',
+    version='0.20121018',
     py_modules=['plpydbapi'],
     packages=['test'],
     cmdclass={'test': test},
