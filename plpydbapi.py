@@ -204,7 +204,8 @@ class Cursor:
         return typ
 
     def executemany(self, operation, seq_of_parameters):
-        # TODO: use saved plan
+        # We can't reuse saved plans here, because we have no way of
+        # knowing whether all parameter sets will be of the same type.
         totalcount = 0
         for parameters in seq_of_parameters:
             self.execute(operation, parameters)
