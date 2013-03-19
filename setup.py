@@ -39,7 +39,7 @@ setup(
         'Programming Language :: Python :: 3',
         'Topic :: Database',
         'Topic :: Software Development :: Libraries :: Python Modules',
-        ],
+    ],
 
     setup_requires=["setuptools_git"],
-    )
+)
