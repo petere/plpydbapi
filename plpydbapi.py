@@ -337,7 +337,6 @@ _typoid_typeobjs = {}
 def get_type_obj(typeoid):
     """Return the type object (STRING, NUMBER, etc.) that corresponds
     to the given type OID."""
-    global _typoid_typeobjs
     if not _typoid_typeobjs:
         for row in plpy.execute(plpy.prepare("SELECT oid, typname, typcategory FROM pg_type")):
             if row['typcategory'] in _typcategory_typeobjs:
