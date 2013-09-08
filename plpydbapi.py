@@ -165,8 +165,8 @@ class Cursor:
             query = operation % placeholders[0]
         else:
             query = operation % placeholders
-        plan = plpy.prepare(query, types)
         try:
+            plan = plpy.prepare(query, types)
             res = plpy.execute(plan, values)
         except plpy.SPIError as e:
             raise Error(e)
