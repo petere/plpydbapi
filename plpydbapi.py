@@ -5,6 +5,7 @@ A Python DB-API compatible (sort of) interface on top of PL/Python
 __author__ = "Peter Eisentraut <peter@eisentraut.org>"
 
 
+import decimal
 import plpy
 import sys
 import time
@@ -23,6 +24,7 @@ paramstyle = 'format'
 
 
 if sys.version[0] == '3':
+    long = int
     StandardError = Exception
 
 
@@ -196,12 +198,20 @@ class Cursor:
 
     @staticmethod
     def py_param_to_pg_type(param):
-        # TODO ...
-        if isinstance(param, int):
-            typ = 'int'
+        if isinstance(param, bool):
+            pgtype = 'bool'
+        elif isinstance(param, decimal.Decimal):
+            pgtype = 'numeric'
+        elif isinstance(param, float):
+            pgtype = 'float8'
+        elif isinstance(param, long):
+            pgtype = 'int'
+        elif isinstance(param, int):
+            pgtype = 'int'
         else:
-            typ = 'text'
-        return typ
+            pgtype = 'text'
+        # TODO ...
+        return pgtype
 
     def executemany(self, operation, seq_of_parameters):
         # We can't reuse saved plans here, because we have no way of
