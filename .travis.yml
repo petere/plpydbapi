@@ -7,6 +7,7 @@ python:
 addons:
   postgresql: 9.3
 before_install:
+  - sudo apt-get update
   - sudo apt-get install -qq bzr mr
   - mr up
 install: sudo apt-get install -qq postgresql-plpython-9.3 postgresql-plpython3-9.3
