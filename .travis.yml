@@ -9,5 +9,5 @@ addons:
 before_install:
   - sudo apt-get install -qq bzr mr
   - mr up
-install: sudo apt-get install -qq postgresql-plpython postgresql-plpython3
+install: sudo apt-get install -qq postgresql-plpython-9.3 postgresql-plpython3-9.3
 script: python setup.py test
