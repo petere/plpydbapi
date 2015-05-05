@@ -37,9 +37,13 @@ except ImportError:
     import unittest
 import test.test_plpydbapi_dbapi20
 import test.plpy_test_runner
+import sys
+
+# unittest and argparse assume that sys.argv always exists, so fake it
+sys.argv = ["plpython"]
 
 try:
-    unittest.main(module='test.test_plpydbapi_dbapi20', argv=["dummy"], testRunner=test.plpy_test_runner.PlpyTestRunner)
+    unittest.main(module='test.test_plpydbapi_dbapi20', testRunner=test.plpy_test_runner.PlpyTestRunner)
 except SystemExit as e:
     # propagate exit status via psql, instead of killing the server process
     if e.args[0] != 0:
